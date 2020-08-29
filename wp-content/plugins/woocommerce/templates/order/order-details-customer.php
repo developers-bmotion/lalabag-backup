@@ -31,15 +31,41 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 	<h2 class="woocommerce-column__title"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h2>
 
 	<address>
-		<?php echo wp_kses_post( $order->get_formatted_billing_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
+		<?php  /* CAMBIOS MI CUENTA */ $dataDir = $order->get_data_billing_address();?>
+		<div id="info-billing" style="display: flex;">
+			<div id="info-one" style="width: 50%;">
+				<h5 style="margin: 5px 0;">Departamento:</h5>
+				<span><?php echo $dataDir['state']; ?></span>
+				<h5 style="margin: 5px 0;">Ciudad:</h5>
+				<span><?php echo $dataDir['city']; ?></span>
+				<h5 style="margin: 5px 0;">Dirección 1:</h5>
+				<span><?php echo $dataDir['address_1']; ?></span>
+				<h5 style="margin: 5px 0;">Dirección 2:</h5>
+				<span><?php echo $dataDir['address_2']; ?></span>
+			</div>
+			<div id="info-one" style="width: 50%;">
+				<h5 style="margin: 5px 0;">Nombre:</h5>
+				<span><?php echo $dataDir['first_name'];  echo ' '; echo $dataDir['last_name']; ?></span>
+				<?php if ( $dataDir['phone'] ) {
+					echo '<h5 style="margin: 5px 0;">Teléfono:</h5>';
+					echo '<span>'; echo $dataDir['phone']; echo '</span>';
+				}?>
+				<?php if ( $dataDir['email'] ) {
+					echo '<h5 style="margin: 5px 0;">Correo:</h5>';
+					echo '<span>'; echo $dataDir['email']; echo '</span>';
+				}?>				
+			</div>
+		</div>
+		
+		<?php //echo wp_kses_post( $order->get_formatted_billing_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
 
-		<?php if ( $order->get_billing_phone() ) : ?>
-			<p class="woocommerce-customer-details--phone"><?php echo esc_html( $order->get_billing_phone() ); ?></p>
-		<?php endif; ?>
+		<?php //if ( $order->get_billing_phone() ) : ?>
+			<!-- <p class="woocommerce-customer-details--phone">< ?php echo esc_html( $order->get_billing_phone() ); ?></p> -->
+		<?php //endif; ?>
 
-		<?php if ( $order->get_billing_email() ) : ?>
-			<p class="woocommerce-customer-details--email"><?php echo esc_html( $order->get_billing_email() ); ?></p>
-		<?php endif; ?>
+		<?php //if ( $order->get_billing_email() ) : ?>
+			<!-- <p class="woocommerce-customer-details--email">< ?php echo esc_html( $order->get_billing_email() ); ?></p> -->
+		<?php //endif; ?>
 	</address>
 
 	<?php if ( $show_shipping ) : ?>
@@ -49,7 +75,22 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 		<div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address col-2">
 			<h2 class="woocommerce-column__title"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h2>
 			<address>
-				<?php echo wp_kses_post( $order->get_formatted_shipping_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
+				<?php /* CAMBIOS MI CUENTA */ $dataShipping = $order->get_data_shipping_address(); ?>
+				<!-- < ?php echo wp_kses_post( $order->get_formatted_shipping_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?> -->
+				<div id="info-shipping">
+					<div id="info-one-shipping">
+						<h5 style="margin: 5px 0;">Nombre:</h5>
+						<span><?php echo $dataDir['first_name'];  echo ' '; echo $dataDir['last_name']; ?></span>
+						<h5 style="margin: 5px 0;">Departamento:</h5>
+						<span><?php echo $dataDir['state']; ?></span>
+						<h5 style="margin: 5px 0;">Ciudad:</h5>
+						<span><?php echo $dataDir['city']; ?></span>
+						<h5 style="margin: 5px 0;">Dirección 1:</h5>
+						<span><?php echo $dataDir['address_1']; ?></span>
+						<h5 style="margin: 5px 0;">Dirección 2:</h5>
+						<span><?php echo $dataDir['address_2']; ?></span>
+					</div>
+				</div>
 			</address>
 		</div><!-- /.col-2 -->
 

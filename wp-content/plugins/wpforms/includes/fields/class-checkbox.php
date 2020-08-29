@@ -584,11 +584,11 @@ class WPForms_Field_Checkbox extends WPForms_Field {
 		$choice_limit  = empty( $form_data['fields'][ $field_id ]['choice_limit'] ) ? 0 : (int) $form_data['fields'][ $field_id ]['choice_limit'];
 		$count_choices = count( $field_submit );
 
-		if ( $choice_limit > 0 && $count_choices > $choice_limit ) {
+		/* if ( $choice_limit > 0 && $count_choices > $choice_limit ) { CAMBIOS ENCUESTA
 			// Generating the error.
 			$error = wpforms_setting( 'validation-check-limit', esc_html__( 'You have exceeded the number of allowed selections: {#}.', 'wpforms-lite' ) );
 			$error = str_replace( '{#}', $choice_limit, $error );
-		}
+		} */
 
 		// Basic required check - If field is marked as required, check for entry data.
 		if (

@@ -91,9 +91,33 @@ $status        = ywsbs_get_status();
 		<?php endforeach; ?>
 		</tbody>
 	</table>
-	<?php
-endif;
 
+	<!-- nueva sesion CAMBIOS SUSCRIPCION -->
+	<h2 style="margin-top: 4rem;"> Mis encuestas </h2>
+	<?php 
+		// obtener datos del usuario
+		$dataUser  = $subscription->get_address_fields( 'billing', true );
+		echo '<script> const dataUser = '.json_encode($dataUser).';</script>';
+		//print_r($dataUser);
+
+		// informacion de suscripciones
+		foreach ( $subscriptions as $subscription_post ) {
+			$subscription = ywsbs_get_subscription( $subscription_post->ID );
+			$start_date   = ( $subscription->start_date ) ? date_i18n( wc_date_format(), $subscription->start_date ) : '';
+
+			echo '<div>';
+				$date = ($start_date) ? '('.$start_date .')' : ' ';
+				echo '<h5 style="background: #ee939475;padding: 10px;">'.$subscription->product_name.' '.$date .'</h5>';
+				if ( $subscription->product_id == '5953') { // lalabag datos de la encuesta  	
+					mostrarDatos($subscription_post->ID, 6155, get_current_user_id(), '[wpforms id="6155"]'); 
+				} else if ( $subscription->product_id == '5995') { // lalabag Pro
+					mostrarDatos($subscription_post->ID, 6156, get_current_user_id(), '[wpforms id="6156"]');
+				} else if ( $subscription->product_id == '6157') { // lalabag Duo
+					mostrarDatos($subscription_post->ID, 6161, get_current_user_id(), '[wpforms id="6161"]');
+				}
+			echo '</div>';
+		}?>				
+	<?php endif;
 do_action( 'ywsbs_my_subscriptions_view_after' );
 ?>
 
@@ -106,3 +130,82 @@ do_action( 'ywsbs_my_subscriptions_view_after' );
 	</p>
 </div>
 
+<?php // funcion que permite mostrar la informacion de la encuesta
+function mostrarDatos($idSubscription, $idPoll, $idUser, $shortcode) { 
+	global $wpdb;
+	$query = 'SELECT * FROM wp_wpforms_entries WHERE form_id = '.$idPoll.' AND user_id = '.$idUser;
+	$infoQuery = $wpdb->get_results($query); 
+
+	if ( $infoQuery ) { // ver datos de la encuesta
+		echo '<div id="view-polls-lalabag-'.$idSubscription.'" onclick="viewMyPolls'.$idSubscription.'()"> <span class="view-poll">Ver datos de la encuesta</span> </div>';
+		foreach ( $infoQuery as $data ) {
+			echo '<div id="data-entry-fields-poll-'.$idSubscription.'" class="postbox" style="display: none;">';					
+			echo '<h5> Encuesta realizada el: '. $data->date .'</h5>';
+			$infoPoll = json_decode( $data->fields );
+			echo '<div class="inside">';
+			foreach ( $infoPoll as $dataPoll ) { // datos de los campos
+				if ($dataPoll->value) { echo '<div class="wpforms-entry-field"><p class="style-name-field">'. $dataPoll->name .' : </p><p class="style-content-field">'. $dataPoll->value .'</p></div>'; }
+			}
+			echo '</div> </div>';
+		}
+		addScriptViewPoll( $idSubscription );				
+	} else { // realizar encuesta ?>
+		<div> Es necesario realizar tu encuesta <span id="polls-lalabag-<?php echo $idSubscription; ?>" onclick="doMyPoll<?php echo $idSubscription; ?>()" class="buttom-do-poll">ver encuesta</span> </div>
+		<div id="content-polls-lalabag-<?php echo $idSubscription; ?>" style="display: none;border: 1px solid #ee9394;padding: 1rem;margin-top: 1rem;"> <?php echo do_shortcode($shortcode);  ?> </div>		
+<?php addScriptDoPoll( $idSubscription ); }} ?>
+
+<?php // metodo para agregar funcionalidad de javascript para HACER la encuesta
+function addScriptDoPoll( $idSubscription ) { ?>
+	<script>
+	var contEvent<?php echo $idSubscription; ?> = true;
+    function doMyPoll<?php echo $idSubscription; ?>() {	
+        if (contEvent<?php echo $idSubscription; ?>) {
+  	        document.getElementById("polls-lalabag-<?php echo $idSubscription; ?>").innerHTML = "ocultar encuesta";
+            document.getElementById("content-polls-lalabag-<?php echo $idSubscription; ?>").style.display = "block";
+  	        contEvent<?php echo $idSubscription; ?> = false;
+            setDataPoll(<?php echo $idSubscription; ?>);  
+        } else {
+  	        document.getElementById("polls-lalabag-<?php echo $idSubscription; ?>").innerHTML = "ver encuesta";
+            document.getElementById("content-polls-lalabag-<?php echo $idSubscription; ?>").style.display = "none";
+            contEvent<?php echo $idSubscription; ?> = true;
+        }
+    }
+	</script>
+<?php } ?>
+
+<?php // metodo para agregar funcionalidad de javascript para VER la encuesta
+function addScriptViewPoll( $idSubscription ) { ?>
+	<script>
+	var viewMyPoll<?php echo $idSubscription; ?> = true;
+    function viewMyPolls<?php echo $idSubscription; ?>() {	
+        if (viewMyPoll<?php echo $idSubscription; ?>) {
+  	        document.getElementById("view-polls-lalabag-<?php echo $idSubscription; ?>").innerHTML = "<span class='view-poll'>Ocultar datos de la encuesta</span>";
+            document.getElementById("data-entry-fields-poll-<?php echo $idSubscription; ?>").style.display = "block";
+  	        viewMyPoll<?php echo $idSubscription; ?> = false;
+        } else {
+  	        document.getElementById("view-polls-lalabag-<?php echo $idSubscription; ?>").innerHTML = "<span class='view-poll'>Ver datos de la encuesta</span>";
+            document.getElementById("data-entry-fields-poll-<?php echo $idSubscription; ?>").style.display = "none";
+            viewMyPoll<?php echo $idSubscription; ?> = true;
+        }
+    }
+	</script>
+<?php } ?>
+
+<script>
+	function setDataPoll( idSubscription ) { // funcion para llenar los datos del formulario
+		if (dataUser) {
+		        var firstName = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-field-name-first` );
+			if (firstName) { firstName.value = dataUser.first_name };
+			var lastName = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-field-name-last` );	
+			if (lastName) { lastName.value = dataUser.last_name };		
+			var phone = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-smart-phone-field` );
+			if (phone) { phone.value = dataUser.phone };		
+			var email = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-field-email` ).childNodes[1];
+			if (email) { email.value = dataUser.email };		
+			var city = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-city` ).childNodes[1];
+			if (city) { city.value = dataUser.city };		
+			var address = document.querySelector( `#content-polls-lalabag-${idSubscription} .wpforms-dir` ).childNodes[1];
+			if (address) { address.value = dataUser.address_1 };		
+		}
+	}
+</script>

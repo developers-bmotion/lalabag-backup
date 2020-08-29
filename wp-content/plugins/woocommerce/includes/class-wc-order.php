@@ -909,6 +909,30 @@ class WC_Order extends WC_Abstract_Order {
 	}
 
 	/**
+	 * get data address billing CAMBIOS MI CUENTA
+	 */
+	public function get_data_billing_address( ) {
+		$raw_address = apply_filters( 'woocommerce_order_formatted_billing_address', $this->get_address( 'billing' ), $this );
+		$raw_address['state'] = WC()->countries->get_state_address( $raw_address );
+		return $raw_address;
+	}
+
+	/**
+	 * get data address billing CAMBIOS MI CUENTA
+	 */
+	public function get_data_shipping_address( ) {
+		$address     = '';
+		$raw_address = $this->get_address( 'shipping' );
+
+		if ( $this->has_shipping_address() ) {
+			$raw_address = apply_filters( 'woocommerce_order_formatted_shipping_address', $raw_address, $this );
+		}
+		
+		$raw_address['state'] = WC()->countries->get_state_address( $raw_address );
+		return $raw_address;
+	}
+
+	/**
 	 * Get a formatted shipping address for the order.
 	 *
 	 * @param string $empty_content Content to show if no address is present. @since 3.3.0.

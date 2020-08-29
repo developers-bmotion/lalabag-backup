@@ -328,7 +328,45 @@ function wc_get_account_formatted_address( $address_type = 'billing', $customer_
 		unset( $address['email'], $address['tel'] );
 	}
 
-	return WC()->countries->get_formatted_address( apply_filters( 'woocommerce_my_account_my_address_formatted_address', $address, $customer->get_id(), $address_type ) );
+	/* CAMBIOS MI CUENTA */ 
+	$raw_address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', $address, $customer->get_id(), $address_type );
+	$raw_address['state'] = WC()->countries->get_state_address( $raw_address );
+	return get_data_my_address($raw_address);
+
+	//return WC()->countries->get_formatted_address( apply_filters( 'woocommerce_my_account_my_address_formatted_address', $address, $customer->get_id(), $address_type ) );
+}
+
+/* CAMBIOS MI CUENTA */ 
+function get_data_my_address($dataDir) {
+	
+	$format_Dir = '<div id="info-Billing-Address">' 
+					. '<div id="info-one-Billing-Address">'
+					. '<div class="detail-Billing-Address">'
+					. '<h5 class="title-h5">Nombre</h5>'
+					. '<span>' . $dataDir["first_name"] . ' ' . $dataDir["last_name"] . '</span>'
+					. '</div>'
+					. '<div class="detail-Billing-Address">'
+					. '<h5 class="title-h5">Departamento</h5>'
+					. '<span>' . $dataDir["state"] . '</span>'
+					. '</div>'
+					. '<div class="detail-Billing-Address">'
+					. '<h5 class="title-h5">Ciudad</h5>'
+					. '<span>' . $dataDir["city"] . '</span>'
+					. '</div>'
+				   . '</div>'
+				   . '<div id="info-two-Billing-Address">'
+					. '<div class="detail-Billing-Address">'
+					. '<h5 class="title-h5">Dirección 1</h5>'
+					. '<span>' . $dataDir["address_1"] . '</span>'
+					. '</div>'
+					. '<div class="detail-Billing-Address">'
+					. '<h5 class="title-h5">Dirección 2</h5>'
+					. '<span>' . $dataDir["address_2"] . '</span>'
+					. '</div>'
+					. '</div>'
+				. '</div>';
+	
+	return $format_Dir;
 }
 
 /**

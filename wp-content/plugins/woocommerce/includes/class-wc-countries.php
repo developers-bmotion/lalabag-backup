@@ -631,6 +631,46 @@ class WC_Countries {
 	}
 
 	/**
+	 * get data stateFull address billing CAMBIOS MI CUENTA
+	 */
+	public function get_state_address( $args = array() ) {
+		$default_args = array(
+			'first_name' => '',   
+			'last_name'  => '',
+			'company'    => '',
+			'address_1'  => '',
+			'address_2'  => '',
+			'city'       => '',
+			'state'      => '',
+			'postcode'   => '',
+			'country'    => '',
+		);
+
+		$args    = array_map( 'trim', wp_parse_args( $args, $default_args ) );
+		$state   = $args['state'];
+		$country = $args['country'];
+
+		// Get all formats.
+		$formats = $this->get_address_formats();
+
+		// Get format for the address' country.
+		$format = ( $country && isset( $formats[ $country ] ) ) ? $formats[ $country ] : $formats['default'];
+
+		// Handle full country name.
+		$full_country = ( isset( $this->countries[ $country ] ) ) ? $this->countries[ $country ] : $country;
+
+		// Country is not needed if the same as base.
+		if ( $country === $this->get_base_country() && ! apply_filters( 'woocommerce_formatted_address_force_country_display', false ) ) {
+			$format = str_replace( '{country}', '', $format );
+		}
+
+		// Handle full state name.
+		$full_state = ( $country && $state && isset( $this->states[ $country ][ $state ] ) ) ? $this->states[ $country ][ $state ] : $state;
+		
+		return $full_state;
+	}
+
+	/**
 	 * Trim white space and commas off a line.
 	 *
 	 * @param  string $line Line.

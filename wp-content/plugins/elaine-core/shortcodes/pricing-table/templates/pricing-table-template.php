@@ -2,16 +2,14 @@
 	<div class="edgtf-pt-inner" <?php echo elaine_edge_get_inline_style($holder_styles); ?>>
 		<ul>
 		    <li style="padding: 30px; margin-bottom: -50px;">
-		        <?php if (esc_html($title) == 'LALABAG') { ?>
+		        <?php if (esc_html($title) == 'LALABAG') { /* IMAGENES DE LAS LALABAGS */ ?>
 						<img src="/wp-content/uploads/2020/06/1-503x503-2.png" alt="" />
-				<?php } else if ($title == 'LALABAG CO') { ?>
-						<!--<img src="/wp-content/uploads/2020/06/WhatsApp-Image-2020-07-01-at-6.27.32-PM.jpeg" alt="" />-->
-                                                <img src="/wp-content/uploads/2020/06/lalabagCoJulio2020-1.jpeg" alt="" />
-                                <?php } else if (esc_html($title) == 'LALABAG PRO') { ?>
+				<?php } else if ($title == 'LALABAG PRO') { ?>
 						<img src="/wp-content/uploads/2020/06/2-503x503-2.png" alt="" />
-				<?php } else { ?>
+                                <?php } else if (esc_html($title) == 'LALABAG DUO') { ?>
 						<img src="/wp-content/uploads/2020/06/503x503-4.png" alt="" />
-
+				<?php } else { ?>
+						<img src="/wp-content/uploads/2020/08/lalabag-co-agosto.png" alt="" />
 				<?php } ?>
 			</li>
 			<li class="edgtf-pt-title-holder">

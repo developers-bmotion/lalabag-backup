@@ -268,10 +268,12 @@ class WPForms_Entries_Table extends WP_List_Table {
 			 * Display default number of first fields in a form.
 			 */
 			$x = 0;
-			foreach ( $this->form_data['fields'] as $id => $field ) {
-				if ( ! in_array( $field['type'], self::get_columns_form_disallowed_fields(), true ) && $x < $display ) {
-					$columns[ 'wpforms_field_' . $id ] = ! empty( $field['label'] ) ? wp_strip_all_tags( $field['label'] ) : esc_html__( 'Field', 'wpforms' );
-					$x ++;
+			foreach ( $this->form_data['fields'] as $id => $field ) { // CAMBIOS ENCUESTA
+				if ( $field['type'] == 'name' || $field['type'] == 'email' || ($field['type'] == 'text' && $field['label'] == 'Ciudad') ) {
+					if ( ! in_array( $field['type'], self::get_columns_form_disallowed_fields(), true ) && $x < $display ) {
+						$columns[ 'wpforms_field_' . $id ] = ! empty( $field['label'] ) ? wp_strip_all_tags( $field['label'] ) : esc_html__( 'Field', 'wpforms' );
+						$x ++;
+					}
 				}
 			}
 		}
