@@ -108,12 +108,12 @@ $status        = ywsbs_get_status();
 			echo '<div>';
 				$date = ($start_date) ? '('.$start_date .')' : ' ';
 				echo '<h5 style="background: #ee939475;padding: 10px;">'.$subscription->product_name.' '.$date .'</h5>';
-				if ( $subscription->product_id == '5953') { // lalabag datos de la encuesta  	
-					mostrarDatos($subscription_post->ID, 6155, get_current_user_id(), '[wpforms id="6155"]'); 
-				} else if ( $subscription->product_id == '5995') { // lalabag Pro
-					mostrarDatos($subscription_post->ID, 6156, get_current_user_id(), '[wpforms id="6156"]');
-				} else if ( $subscription->product_id == '6157') { // lalabag Duo
-					mostrarDatos($subscription_post->ID, 6161, get_current_user_id(), '[wpforms id="6161"]');
+				if ( $subscription->product_id == '7410' || $subscription->product_id == '7415' || $subscription->product_id == '7419') { // lalabag datos de la encuesta  	
+					mostrarDatos($subscription_post->ID, 6502, get_current_user_id(), '[wpforms id="6502"]'); 
+				} else if ( $subscription->product_id == '7421' || $subscription->product_id == '7422' || $subscription->product_id == '7425') { // lalabag Pro
+					mostrarDatos($subscription_post->ID, 6607, get_current_user_id(), '[wpforms id="6607"]');
+				} else if ( $subscription->product_id == '7432') { // lalabag Duo
+					mostrarDatos($subscription_post->ID, 6608, get_current_user_id(), '[wpforms id="6608"]');
 				}
 			echo '</div>';
 		}?>				
