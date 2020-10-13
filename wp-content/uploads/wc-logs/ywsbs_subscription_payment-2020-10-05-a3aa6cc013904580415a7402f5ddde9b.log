@@ -202,3 +202,83 @@
 10-05-2020 @ 12:04:05 - Found 0 new renew orders
 10-05-2020 @ 12:04:05 - Found 0 failed renew orders
 10-05-2020 @ 12:04:05 - =======================
+10-05-2020 @ 13:01:38 - ======================
+10-05-2020 @ 13:01:38 - Start renew order cron at 2020-10-05 13:01:38
+10-05-2020 @ 13:01:38 - Search subscriptions with Payment due date < 2020-10-06 13:01:38
+10-05-2020 @ 13:01:38 - Found 0 subscriptions
+10-05-2020 @ 13:01:38 - ======================
+10-05-2020 @ 13:01:38 - ===============
+10-05-2020 @ 13:01:38 - Start Payment Renews cron at 2020-10-05 13:01:38
+10-05-2020 @ 13:01:38 - Search renew order with date < 2020-10-04 13:01:38
+10-05-2020 @ 13:01:38 - Found 0 new renew orders
+10-05-2020 @ 13:01:38 - Found 0 failed renew orders
+10-05-2020 @ 13:01:38 - =======================
+10-05-2020 @ 13:13:23 - --------Check for billing
+10-05-2020 @ 13:13:23 - -------- billing for 7581 and user 214 (214 ) 
+10-05-2020 @ 13:13:23 - --------Check for shipping
+10-05-2020 @ 13:13:23 - -------- shipping for 7581 and user 214 (214 ) 
+10-05-2020 @ 14:05:29 - ======================
+10-05-2020 @ 14:05:29 - Start renew order cron at 2020-10-05 14:05:29
+10-05-2020 @ 14:05:29 - Search subscriptions with Payment due date < 2020-10-06 14:05:29
+10-05-2020 @ 14:05:29 - Found 0 subscriptions
+10-05-2020 @ 14:05:29 - ======================
+10-05-2020 @ 14:05:29 - ===============
+10-05-2020 @ 14:05:29 - Start Payment Renews cron at 2020-10-05 14:05:29
+10-05-2020 @ 14:05:29 - Search renew order with date < 2020-10-04 14:05:29
+10-05-2020 @ 14:05:29 - Found 0 new renew orders
+10-05-2020 @ 14:05:29 - Found 0 failed renew orders
+10-05-2020 @ 14:05:29 - =======================
+10-05-2020 @ 15:07:44 - ======================
+10-05-2020 @ 15:07:44 - Start renew order cron at 2020-10-05 15:07:44
+10-05-2020 @ 15:07:44 - Search subscriptions with Payment due date < 2020-10-06 15:07:44
+10-05-2020 @ 15:07:44 - Found 0 subscriptions
+10-05-2020 @ 15:07:44 - ======================
+10-05-2020 @ 15:07:44 - ===============
+10-05-2020 @ 15:07:44 - Start Payment Renews cron at 2020-10-05 15:07:44
+10-05-2020 @ 15:07:44 - Search renew order with date < 2020-10-04 15:07:44
+10-05-2020 @ 15:07:44 - Found 0 new renew orders
+10-05-2020 @ 15:07:44 - Found 0 failed renew orders
+10-05-2020 @ 15:07:44 - =======================
+10-05-2020 @ 15:40:23 - --------Check for billing
+10-05-2020 @ 15:40:23 - -------- billing for 7581 and user 214 (214 ) 
+10-05-2020 @ 15:40:30 - --------Check for billing
+10-05-2020 @ 15:40:30 - -------- billing for 7581 and user 214 (214 ) 
+10-05-2020 @ 15:40:30 - --------Check for shipping
+10-05-2020 @ 15:40:30 - -------- shipping for 7581 and user 214 (214 ) 
+10-05-2020 @ 16:00:13 - ======================
+10-05-2020 @ 16:00:13 - Start renew order cron at 2020-10-05 16:00:13
+10-05-2020 @ 16:00:13 - Search subscriptions with Payment due date < 2020-10-06 16:00:13
+10-05-2020 @ 16:00:13 - Found 0 subscriptions
+10-05-2020 @ 16:00:13 - ======================
+10-05-2020 @ 16:00:13 - ===============
+10-05-2020 @ 16:00:13 - Start Payment Renews cron at 2020-10-05 16:00:13
+10-05-2020 @ 16:00:13 - Search renew order with date < 2020-10-04 16:00:13
+10-05-2020 @ 16:00:13 - Found 0 new renew orders
+10-05-2020 @ 16:00:13 - Found 0 failed renew orders
+10-05-2020 @ 16:00:13 - =======================
+10-05-2020 @ 16:09:31 - --------Check for billing
+10-05-2020 @ 16:09:31 - -------- billing for 7592 and user 214 (214 ) 
+10-05-2020 @ 16:09:31 - --------Check for billing
+10-05-2020 @ 16:09:31 - -------- billing for 7592 and user 214 (214 ) 
+10-05-2020 @ 17:00:08 - ======================
+10-05-2020 @ 17:00:08 - Start renew order cron at 2020-10-05 17:00:08
+10-05-2020 @ 17:00:08 - Search subscriptions with Payment due date < 2020-10-06 17:00:08
+10-05-2020 @ 17:00:08 - Found 0 subscriptions
+10-05-2020 @ 17:00:08 - ======================
+10-05-2020 @ 17:00:08 - ===============
+10-05-2020 @ 17:00:08 - Start Payment Renews cron at 2020-10-05 17:00:08
+10-05-2020 @ 17:00:08 - Search renew order with date < 2020-10-04 17:00:08
+10-05-2020 @ 17:00:08 - Found 0 new renew orders
+10-05-2020 @ 17:00:08 - Found 0 failed renew orders
+10-05-2020 @ 17:00:08 - =======================
+10-05-2020 @ 18:00:14 - ======================
+10-05-2020 @ 18:00:14 - Start renew order cron at 2020-10-05 18:00:14
+10-05-2020 @ 18:00:14 - Search subscriptions with Payment due date < 2020-10-06 18:00:14
+10-05-2020 @ 18:00:14 - Found 0 subscriptions
+10-05-2020 @ 18:00:14 - ======================
+10-05-2020 @ 18:00:14 - ===============
+10-05-2020 @ 18:00:14 - Start Payment Renews cron at 2020-10-05 18:00:14
+10-05-2020 @ 18:00:14 - Search renew order with date < 2020-10-04 18:00:14
+10-05-2020 @ 18:00:14 - Found 0 new renew orders
+10-05-2020 @ 18:00:14 - Found 0 failed renew orders
+10-05-2020 @ 18:00:14 - =======================
